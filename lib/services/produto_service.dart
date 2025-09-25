@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
+import '../models/produto_model.dart';
 
 const String baseUrl = 'http://localhost:8080/produtos';
 
@@ -10,11 +14,13 @@ class ProdutoService{
 
   Uri _u(String path) => Uri.parse('$baseUrl$path');
 
-  //Future<List<ProdutoModel>> listar()  async{
+    Future<List<ProdutoModel>> listar()  async{
     //final response = await _client.get(_u('/listar'));
-    //final response = await _client.get(Uri.parse(baseUrl + '/listar'));
-    //if(response.statusCode == 200){
-
-    //}
-  //}
+    final response = await _client.get(Uri.parse(baseUrl + '/listar'));
+    if(response.statusCode >= 200 && response.statusCode < 300){
+      final data = jsonDecode(response.body) as List;
+      return data.map((e) => ProdutoModel.fromJson(e)).toList();
+    }
+    throw Exception('Erro ao listar produtos: ${response.statusCode}');
+  }
 }
