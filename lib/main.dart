@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => MyHomePage(title: 'home')),
         GetPage(name: '/produtos', page: () => ListaProdutos()),
-        GetPage(name: '/teste', page: () => MyPageTeste(title: 'teste'))
+        GetPage(name: '/lojas', page: () => MyPageTeste())
       ],
     );
   }

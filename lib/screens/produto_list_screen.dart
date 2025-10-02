@@ -30,7 +30,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
                 return Center(child: Text('Erro:  ${widget.controller.error}'),);
               }
               if(widget.controller.produtos.isEmpty){
-                return Center(child: Text('Nenhum produto econtrado'),);
+                return Center(child: Text('Nenhum produto encontrado'),);
               }
 
               return ListView.builder(
