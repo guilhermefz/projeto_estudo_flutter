@@ -1,4 +1,5 @@
 import 'package:desenv_mobile/screens/home_screen.dart';
+import 'package:desenv_mobile/screens/loja_form_screen.dart';
 import 'package:desenv_mobile/screens/produto_list_screen.dart';
 import 'package:desenv_mobile/screens/teste_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => MyHomePage(title: 'home')),
         GetPage(name: '/produtos', page: () => ListaProdutos()),
-        GetPage(name: '/lojas', page: () => MyPageTeste())
+        GetPage(name: '/lojas', page: () => MyPageTeste()),
+        GetPage(name: '/loja_form', page: () => LojaFormScreen())
       ],
     );
   }

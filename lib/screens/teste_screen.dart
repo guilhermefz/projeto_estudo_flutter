@@ -44,12 +44,21 @@ class _ListarlojasState extends State<MyPageTeste> {
                   child: ListTile(
                     title: Text('${p.nome}'),
                     subtitle: Text('${p.cnpj} - ${p.endereco} ${p.telefone}'),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red,)),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(onPressed: (){
+                        } , icon: Icon(Icons.delete, color: Colors.red,)),
+
+                        IconButton(onPressed: (){
+                          Get.toNamed('/loja_form', arguments: p);
+                        }, icon: Icon(Icons.edit, color: Colors.blue,))
+                      ],
+                    )
                   ),
                 );
               });
-        })
-
+        }),
     );
   }
 }
