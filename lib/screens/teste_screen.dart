@@ -38,20 +38,31 @@ class _ListarlojasState extends State<MyPageTeste> {
           return ListView.builder(
               itemCount: widget.controller.lojas.length,
               itemBuilder: (variavel, i){
-                final p = widget.controller.lojas[i];
+                final loja = widget.controller.lojas[i];
                 return Card(
                   margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: ListTile(
-                    title: Text('${p.nome}'),
-                    subtitle: Text('${p.cnpj} - ${p.endereco} ${p.telefone}'),
+                    title: Text('${loja.nome}'),
+                    subtitle: Text('${loja.cnpj} - ${loja.endereco} ${loja.telefone}'),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(onPressed: (){
+                          Get.defaultDialog(
+                            title: "Remover",
+                            middleText: 'Deseja remover a loja ${loja.nome}',
+                            textCancel: "Cancelar",
+                            textConfirm: "Confirmar",
+                            onConfirm: (){
+                              widget.controller.remover(loja.id!);
+                              Get.back();
+                            }
+                          );
+
                         } , icon: Icon(Icons.delete, color: Colors.red,)),
 
                         IconButton(onPressed: (){
-                          Get.toNamed('/loja_form', arguments: p);
+                          Get.toNamed('/loja_form', arguments: loja);
                         }, icon: Icon(Icons.edit, color: Colors.blue,))
                       ],
                     )

@@ -42,7 +42,28 @@ class _ListaProdutosState extends State<ListaProdutos> {
                       child: ListTile(
                         title: Text('${p.nome} - R\$ ${p.preco.toStringAsFixed(2)}'),
                         subtitle: Text(p.descricao),
-                        trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red,)),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(onPressed: (){
+                                Get.defaultDialog(
+                                    title: "Remover",
+                                    middleText: 'Deseja remover o produto ${p.nome}',
+                                    textCancel: "Cancelar",
+                                    textConfirm: "Confirmar",
+                                    onConfirm: (){
+                                      widget.controller.remover(p.id!);
+                                      Get.back();
+                                    }
+                                );
+
+                              } , icon: Icon(Icons.delete, color: Colors.red,)),
+
+                              IconButton(onPressed: (){
+                                Get.toNamed('/loja_form', arguments: p);
+                              }, icon: Icon(Icons.edit, color: Colors.blue,))
+                            ],
+                          )
                       ),
                     );
                   });

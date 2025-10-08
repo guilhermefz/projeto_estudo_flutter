@@ -17,6 +17,21 @@ class _LojaFormScreenState extends State<LojaFormScreen> {
   final _enderecoController = TextEditingController();
   final _telefoneController = TextEditingController();
   final _service = LojaService(); // Instância do serviço
+  String? id;
+
+  @override
+  void initState(){
+    super.initState();
+    final arg = Get.arguments;
+    if(arg != null && arg is LojaModel){
+      id = arg.id;
+      _nomeController.text = arg.nome;
+      _cnpjController.text = arg.cnpj;
+      _enderecoController.text = arg.endereco;
+      _telefoneController.text = arg.telefone;
+    }
+  }
+
 
 
   Future<void> _salvarLoja() async {

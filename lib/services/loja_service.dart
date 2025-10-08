@@ -23,4 +23,12 @@ class LojaService{
     }
     throw Exception('Erro ao listar lojas: ${response.statusCode}');
   }
+
+  Future<String> delete(String id) async {
+    final res = await _client.post(Uri.parse(baseUrl + '/apagar/$id'));
+    if(res.statusCode >= 200 && res.statusCode < 300){
+      return "Removido com sucesso";
+  }
+  throw Exception('Erro ao apagar loja: ${res.statusCode}');
+  }
 }
