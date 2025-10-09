@@ -70,6 +70,13 @@ class _ListarlojasState extends State<MyPageTeste> {
                 );
               });
         }),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){
+          Get.toNamed('/loja_form');
+        },
+        label: Text('Nova loja'),
+        icon: Icon(Icons.add),
+      ),
     );
   }
 }

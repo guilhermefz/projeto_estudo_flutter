@@ -1,5 +1,6 @@
 import 'package:desenv_mobile/models/loja_model.dart';
 import 'package:desenv_mobile/services/loja_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LojaController extends GetxController{
@@ -45,4 +46,22 @@ class LojaController extends GetxController{
     }
   }
 
+  Future<void> salvar({ required String nome, required String endereco, required String cnpj, required String telefone}) async {
+    try {
+      isLoading.value = true;
+      await service.salvar(
+          LojaModel(
+              id: '',
+              nome: nome,
+              cnpj: cnpj,
+              endereco: endereco,
+              telefone: telefone)
+      );
+      Get.back();
+      Get.snackbar('sucesso', 'loja salva com sucesso', backgroundColor: Colors.purple);
+      listar();
+    }catch(e){
+      Get.snackbar('Erro', 'erro ao salvar');
+    }
+  }
 }

@@ -60,15 +60,21 @@ class _ListaProdutosState extends State<ListaProdutos> {
                               } , icon: Icon(Icons.delete, color: Colors.red,)),
 
                               IconButton(onPressed: (){
-                                Get.toNamed('/loja_form', arguments: p);
+                                Get.toNamed('/produto_form', arguments: p);
                               }, icon: Icon(Icons.edit, color: Colors.blue,))
                             ],
                           )
                       ),
                     );
                   });
-          })
-
-    );
+          }),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){
+          Get.toNamed('/produto_form');
+        },
+        label: Text('Novo produto'),
+        icon: Icon(Icons.add),
+        ),
+        );
   }
 }

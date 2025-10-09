@@ -11,6 +11,11 @@ class MenuComponent extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          DrawerHeader(
+              child: Text("Produtos",
+                style: TextStyle(color: Colors.pink, fontSize: 20),
+              )
+          ),
           const SizedBox(height: 40),
           ListTile(
             title: const Text('HOME'),
