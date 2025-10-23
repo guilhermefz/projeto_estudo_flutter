@@ -32,8 +32,6 @@ class MyApp extends StatelessWidget {
       //listas das rotas e paginas
       getPages: [
         GetPage(name: '/', page: () => MyHomePage(title: 'home')),
-        GetPage(name: '/produtos', page: () => ListaProdutos()),
-        GetPage(name: '/lojas', page: () => MyPageTeste()),
         GetPage(
           name: '/loja_form',
           page: () => LojaFormScreen(),
@@ -47,13 +45,41 @@ class MyApp extends StatelessWidget {
           })
         ),
         GetPage(
-            name: '/produto_form',
+            name: '/lojas',
+            page: () => MyPageTeste(),
+            binding: BindingsBuilder((){
+              // camada de acesse da API
+              Get.lazyPut(()=> LojaService()); //Registra LOja service sob demanda
+
+              // COntroller estado da tela
+              Get.put(
+                  LojaController(service: Get.find<LojaService>())
+              );
+            })
+        ),
+        GetPage(name: '/produtos',
+            page: () => ListaProdutos(),
+            binding: BindingsBuilder((){
+              Get.lazyPut(() => LojaService());
+              Get.lazyPut(()=> ProdutoService());
+              Get.put(
+                  LojaController(service: Get.find<LojaService>())
+              );
+              Get.put(
+                  ProdutoController(service: Get.find<ProdutoService>())
+              );
+            })
+        ),
+        GetPage(name: '/produtoForm',
             page: () => ProdutoFormScreen(),
             binding: BindingsBuilder((){
-              Get.lazyPut(() => ProdutoService());
-
+              Get.lazyPut(() => LojaService());
+              Get.lazyPut(()=> ProdutoService());
               Get.put(
-                ProdutoController(service: Get.find<ProdutoService>())
+                  LojaController(service: Get.find<LojaService>())
+              );
+              Get.put(
+                  ProdutoController(service: Get.find<ProdutoService>())
               );
             })
         ),

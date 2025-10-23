@@ -66,6 +66,9 @@ class _ListarlojasState extends State<MyPageTeste> {
                         }, icon: Icon(Icons.edit, color: Colors.blue,))
                       ],
                     )
+                      //onTap: (){
+                      //Get.toNamed('/produtos', arguments: loja.)
+                //},
                   ),
                 );
               });

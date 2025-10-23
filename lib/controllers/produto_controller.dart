@@ -1,5 +1,6 @@
 import 'package:desenv_mobile/models/produto_model.dart';
 import 'package:desenv_mobile/services/produto_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProdutoController extends GetxController{
@@ -40,6 +41,30 @@ class ProdutoController extends GetxController{
       //lojas.removeWhere((lojas))=>lojas.id == id); //outra forma de chamar, parecido com o expressão lambda
     }catch(e){
       Get.snackbar('Erro', e.toString());
+    }finally{
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> salvar({ String? id, required String nome, required String descricao, required double preco, required String loja}) async {
+    try {
+      isLoading.value = true;
+      await service.salvar(
+          ProdutoModel(
+              id: id,
+              nome: nome,
+              descricao: descricao,
+              preco: preco,
+              lojaId: loja)
+      );
+
+      await listar();
+
+      Get.back();
+      Get.snackbar('sucesso', 'produto salvo com sucesso', backgroundColor: Colors.purple);
+      listar();
+    }catch(e){
+      Get.snackbar('Erro', 'erro ao salvar');
     }finally{
       isLoading.value = false;
     }

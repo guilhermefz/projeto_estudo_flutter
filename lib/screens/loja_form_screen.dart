@@ -70,24 +70,24 @@ class _LojaFormScreenState extends State<LojaFormScreen> {
               decoration: const InputDecoration(labelText: 'Telefone'),
             ),
             const SizedBox(height: 32),
-            Obx(() => ElevatedButton.icon(
-                onPressed: widget.controller.isLoading.value ? null
-                    :(){
-                      if(_formKey.currentState!.validate()){
-                        widget.controller.salvar(
-                          nome: _nomeController.text,
-                          cnpj: _cnpjController.text,
-                          endereco: _enderecoController.text,
-                          telefone: _telefoneController.text
-                        );
-                      }
-                    },
-                icon: Icon(Icons.save),
-                label: Text(
-                  widget.controller.isLoading.value ? 'Salvando...': 'Salvar'
-                ),
+              Obx(() => ElevatedButton.icon(
+                  onPressed: widget.controller.isLoading.value ? null
+                      :(){
+                        if(_formKey.currentState!.validate()){
+                          widget.controller.salvar(
+                            nome: _nomeController.text,
+                            cnpj: _cnpjController.text,
+                            endereco: _enderecoController.text,
+                            telefone: _telefoneController.text
+                          );
+                        }
+                      },
+                  icon: Icon(Icons.save),
+                  label: Text(
+                    widget.controller.isLoading.value ? 'Salvando...': 'Salvar'
+                  ),
+                )
               )
-            )
           ],
           ),
         ),

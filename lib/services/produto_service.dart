@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../models/loja_model.dart';
 import '../models/produto_model.dart';
 
 const String baseUrl = 'http://localhost:8080/produtos';
@@ -30,5 +31,16 @@ class ProdutoService{
       return "Removido com sucesso";
     }
     throw Exception('Erro ao apagar produto: ${res.statusCode}');
+  }
+
+  Future<ProdutoModel> salvar(ProdutoModel produto) async {
+    final res = await _client.post(Uri.parse(baseUrl + '/salvar'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(produto),
+    );
+    if(res.statusCode >= 200 && res.statusCode < 300){
+      return ProdutoModel.fromJson(jsonDecode(res.body));
+    }
+    throw Exception('Erro ao salvar produto: ${res.statusCode}');
   }
 }

@@ -60,7 +60,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
                               } , icon: Icon(Icons.delete, color: Colors.red,)),
 
                               IconButton(onPressed: (){
-                                Get.toNamed('/produto_form', arguments: p);
+                                Get.toNamed('/produtoForm', arguments: p);
                               }, icon: Icon(Icons.edit, color: Colors.blue,))
                             ],
                           )
@@ -70,7 +70,7 @@ class _ListaProdutosState extends State<ListaProdutos> {
           }),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
-          Get.toNamed('/produto_form');
+          Get.toNamed('/produtoForm');
         },
         label: Text('Novo produto'),
         icon: Icon(Icons.add),

@@ -3,12 +3,14 @@ class ProdutoModel {
   final String nome;
   final String descricao;
   final double preco;
+  final String? lojaId;
 
   ProdutoModel({
     this.id,
     required this.nome,
     required this.descricao,
-    required this.preco
+    required this.preco,
+    required this.lojaId
   });
 
   //Fabrica que cria um produto model a partir de um json
@@ -16,10 +18,11 @@ class ProdutoModel {
     return ProdutoModel(
       id:json['id']?.toString(),
       nome:json['nome']?? '',
-      descricao:json['decricao']?? '',
+      descricao:json['descricao']?? '',
       preco: (json['preco'] is num)
           ? (json['preco'] as num).toDouble()
-          : double.tryParse(json['preco']?.toString() ?? '0') ?? 0.0
+          : double.tryParse(json['preco']?.toString() ?? '0') ?? 0.0,
+      lojaId: json['lojaId']?.toString(),
     );
   }
 
@@ -28,7 +31,8 @@ class ProdutoModel {
     'id': id,
     'nome': nome,
     'descricao': descricao,
-    'preco': preco
+    'preco': preco,
+    'lojaId': lojaId,
   };
     
 }
